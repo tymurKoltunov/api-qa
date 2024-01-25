@@ -23,28 +23,14 @@ public class PetCreationTests {
     void creationOfANewPetViaAPI(){
         var targetId = UUID.randomUUID().toString();
         String targetPetName = faker.name().name();
+        PetDto targetPet = new PetDto();
+        targetPet.setId(0L);
         var post = petStoreApiClient()
-                .body("{\n" +
-                        "  \"id\": \"" + targetId + "\",\n" +
-                        "  \"category\": {\n" +
-                        "    \"id\": 0,\n" +
-                        "    \"name\": \"string\"\n" +
-                        "  },\n" +
-                        "  \"name\": \""+ targetPetName +"\",\n" +
-                        "  \"photoUrls\": [\n" +
-                        "    \"string\"\n" +
-                        "  ],\n" +
-                        "  \"tags\": [\n" +
-                        "    {\n" +
-                        "      \"id\": 0,\n" +
-                        "      \"name\": \"string\"\n" +
-                        "    }\n" +
-                        "  ],\n" +
-                        "  \"status\": \"available\"\n" +
-                        "}")
+                .body(targetPet)
                 .when()
                 .post("/pet");
-        post.prettyPrint();
+        PetDto actualPet = post.as(PetDto.class);
+        System.out.println("actualPet = " + actualPet);
 
         post
                 .then()
