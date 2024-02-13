@@ -1,0 +1,31 @@
+def mainResources = "src/main/resources"
+
+ext {
+    petApiDir = file("$buildDir/pet-api")
+    petSpecFile = file("$buildDir/petSpec.json")
+}
+
+swaggerSources {
+    logging.captureStandardOutput LogLevel.QUIET
+
+    mkdir("build")
+
+    def petStoreUrl = "https://petstore.swagger.io/v2/swagger.json"
+    println "Generation models from: $petStoreUrl"
+    petSpecFile.write(new URL(petStoreUrl).text)
+
+    petApi {
+        inputFile = petSpecFile
+
+        code {
+            configFile = file("$mainResources/swagger/pet-config.json")
+
+            outputDir = petApiDir
+
+            wipeOutputDir = true
+            language = 'java'
+           // components = ["models", "apis"]
+        }
+    }
+}
+

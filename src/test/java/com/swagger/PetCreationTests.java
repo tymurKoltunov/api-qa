@@ -1,10 +1,13 @@
 package com.swagger;
 
 import com.github.javafaker.Faker;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
+import com.swagger.api.controller.PetController;
+import com.swagger.api.controller.PetsController;
+import com.swagger.petstore.models.Pet;
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.filter.log.LogDetail;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,40 +15,33 @@ import org.junit.jupiter.api.Test;
 import java.util.UUID;
 
 import static io.restassured.RestAssured.*;
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class PetCreationTests {
-
+    static {
+        requestSpecification = new RequestSpecBuilder()
+                .log(LogDetail.ALL)
+                .addFilter(new AllureRestAssured())
+                .addHeader("X-Tracing-Id", UUID.randomUUID().toString())
+                .build();
+    }
     Faker faker = new Faker();
+    PetController petController = new PetController();
 
     @Test
     @DisplayName("Creation of a new pet via API")
     void creationOfANewPetViaAPI(){
-        var targetId = UUID.randomUUID().toString();
         String targetPetName = faker.name().name();
-        PetDto targetPet = new PetDto();
-        targetPet.setId(0L);
-        var post = petStoreApiClient()
-                .body(targetPet)
-                .when()
-                .post("/pet");
-        PetDto actualPet = post.as(PetDto.class);
-        System.out.println("actualPet = " + actualPet);
+        long targetPetId = faker.number().randomNumber();
+        Pet targetPet = new Pet().name(targetPetName).id(targetPetId);
 
-        post
-                .then()
-                .assertThat()
-                .statusCode(200);
-        String actualPetName = petStoreApiClient()
-                .get("/pet/{targetId}", targetId)
-                .jsonPath().getString("name");
-        Assertions.assertEquals(targetPetName, actualPetName);
-    }
+        var createdPetResponse = petController
+                .addNewPetToStore(targetPet);
+        Assertions.assertEquals(200, createdPetResponse.statusCode());
 
-    private static RequestSpecification petStoreApiClient() {
-        return given()
-                .baseUri("https://petstore.swagger.io")
-                .basePath("/v2")
-                .contentType(ContentType.JSON);
+        var petByIdResponse = petController.getPetById(targetPet.getId());
+
+        Pet actualPet = petByIdResponse.as(Pet.class);
+        Assertions.assertEquals(targetPetName, actualPet.getName());
+        Assertions.assertEquals(200, petByIdResponse.statusCode());
     }
 }

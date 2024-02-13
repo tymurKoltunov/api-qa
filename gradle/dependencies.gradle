@@ -1,0 +1,45 @@
+repositories {
+    mavenCentral()
+}
+
+ext {
+    allureArtifact = 'io.qameta.allure:allure'
+    LombokArtifact = 'org.projectlombok:lombok'
+    junitJupiter = 'org.junit.jupiter:junit-jupiter'
+
+    junit5Ver = '5.6.2'
+    LombokVer = '1.18.16'
+    restAssuredVer = '4.2.0'
+    swaggerVer = '1.6.3'
+    allurever = '2.15.0'
+    jacksonVer = '2.12.5'
+}
+
+dependencies {
+    swaggerCodegen "org.openapitools:openapi-generator-cli:4.+"
+
+    implementation(
+            'javax.annotation:javax.annotation-api:1.3.2',
+            'com.google.code.findbugs:jsr305:3.0.2',
+            'io.rest-assured:rest-assured:4.4.0',
+            "com.fasterxml.jackson.core:jackson-databind:${jacksonVer}",
+            'com.google.code.gson:gson:2.8.9',
+
+            "io.swagger:swagger-annotations:$swaggerVer",
+            'org.springframework:spring-web:4.+',
+            "com.github.joschi.jackson:jackson-datatype-threetenbp:2.5.0",
+            'io.gsonfire:gson-fire:1.9.0',
+            'com.squareup.okio:okio:3.7.0',
+
+            "$allureArtifact-java-commons:$allurever",
+            "$allureArtifact-junit5:$allurever",
+            "$allureArtifact-selenide:$allurever",
+            "$allureArtifact-rest-assured:$allurever",
+    )
+    testImplementation(
+            'org.junit.jupiter:junit-jupiter-api:5.8.1',
+            'com.github.javafaker:javafaker:1.0.2',
+            'org.assertj:assertj-core:3.11.1'
+    )
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
