@@ -4,22 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ecdabe1-3974-49a7-a416-11039fcca15a" name="Changes" comment="second lesson in progress">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/apiCodeGen.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/dependencies.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swagger/api/controller/BaseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swagger/api/controller/PetController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swagger/api/controller/PetsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swagger/api/controller/StoreController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/swagger/pet-config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/petstore.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="0ecdabe1-3974-49a7-a416-11039fcca15a" name="Changes" comment="fourth lesson start">
+      <change afterPath="$PROJECT_DIR$/gradle/assertjGen.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swagger/Category.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swagger/PetDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swagger/TagsItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/swagger/PetCreationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/swagger/PetCreationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +45,12 @@
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="api_qa" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -86,8 +81,8 @@
   "keyToString": {
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
   }
 }]]></component>
@@ -96,7 +91,28 @@
       <recent name="com.swagger.api.controller" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.api_qa [assertjGen]">
+    <configuration name="api_qa [assertjGen]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--stacktrace" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="assertjGen" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="api_qa [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -162,6 +178,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.api_qa [assertjGen]" />
         <item itemvalue="Gradle.api_qa [generateSwaggerCode]" />
         <item itemvalue="Gradle.api_qa [clean]" />
         <item itemvalue="Gradle.api_qa [generateSwaggerCodePetApi]" />
@@ -198,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706201375928</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fourth lesson start">
+      <created>1707811485078</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1707811485078</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -216,7 +240,8 @@
     <MESSAGE value="started project" />
     <MESSAGE value="first lesson finished" />
     <MESSAGE value="second lesson in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="second lesson in progress" />
+    <MESSAGE value="fourth lesson start" />
+    <option name="LAST_COMMIT_MESSAGE" value="fourth lesson start" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

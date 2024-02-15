@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import java.util.UUID;
 
 import static io.restassured.RestAssured.*;
+import static org.assertj.core.api.Assertions.*;
 
 public class PetCreationTests {
     static {
@@ -41,7 +42,14 @@ public class PetCreationTests {
         var petByIdResponse = petController.getPetById(targetPet.getId());
 
         Pet actualPet = petByIdResponse.as(Pet.class);
+
         Assertions.assertEquals(targetPetName, actualPet.getName());
-        Assertions.assertEquals(200, petByIdResponse.statusCode());
+        assertThat(actualPet).isEqualTo(targetPet);
+        assertThat(actualPet.getPhotoUrls()).contains("");
+
+    }
+
+    private void extracted(Pet targetPetName, Pet actualPet) {
+        Assertions.assertEquals(targetPetName, actualPet.getName());
     }
 }

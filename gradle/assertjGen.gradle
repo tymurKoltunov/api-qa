@@ -1,0 +1,26 @@
+task cleanAssertionClass(type: Delete) {
+    delete "$buildDir/pet-api/src/main/java/io/swagger/petstore/asserts/Assertions.java"
+}
+
+assertjGen {
+    packages = ['io.swagger.petstore.models']
+
+    generateAssertionsInPackage = 'io.swagger.petstore.asserts'
+    targetDir = "$buildDir/pet-api/src/main/java/"
+
+    quiet = false
+    hierarchical = true
+
+    generatedSourcesScope = 'main'
+    generateBddAssertions = false
+    generateJUnitSoftAssertions = false
+    generateSoftAssertions = false
+
+    generateAssertionsForAllFields = true
+
+    cleanTargetDir = false
+}
+
+generateSwaggerCode.finalizedBy 'assertjGen'
+compileJava.dependsOn 'generageSwaggerCode'
+tasks.named('assertjGen').get().finalizedBy('cleanAssertionClass')
